@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VC</span>
+    <span class="brand-name">Vice Cover Studio</span>
+  </div>
+  <p class="brand-tag">Turn your photo into poster cover art — right in your browser, nothing uploaded.</p>
+</header>
+
+<main class="layout">
+  <section class="controls" aria-label="Cover controls">
+    <div class="panel">
+      <h2>Photo</h2>
+      <label class="upload-btn" for="photoInput">Choose a photo from your device</label>
+      <input id="photoInput" type="file" accept="image/*" multiple hidden>
+      <p class="hint">Your photo is read on this machine only. It never leaves your browser.</p>
+      <div class="chip-row" id="photoList">
+        <button type="button" class="chip" data-photo="boulevard">Boulevard</button>
+        <button type="button" class="chip" data-photo="pier">Pier</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Panels</h2>
+      <p class="hint" id="panelLabel">Panel 1 — hero</p>
+      <div class="chip-row">
+        <button type="button" class="chip" data-panel="0">Hero</button>
+        <button type="button" class="chip" data-panel="1">Panel 2</button>
+        <button type="button" class="chip" data-panel="2">Panel 3</button>
+        <button type="button" class="chip" data-panel="3">Panel 4</button>
+      </div>
+      <p class="hint">Pick a panel above (or click it on the cover), then choose its photo. Drag inside a panel on the cover to move the photo.</p>
+      <label class="field-label" for="zoomRange">Zoom <span id="zoomValue">100%</span></label>
+      <input id="zoomRange" type="range" min="1" max="2.5" step="0.01" value="1">
+      <div class="row">
+        <button type="button" class="btn ghost" id="fitToggle">Fit: fill panel</button>
+        <button type="button" class="btn ghost" id="resetPan">Reset position</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Caption</h2>
+      <label class="field-label" for="titleInput">Title</label>
+      <input id="titleInput" type="text" value="VICE CITY" maxlength="48" autocomplete="off">
+      <label class="field-label" for="subtitleInput">Subtitle / tagline</label>
+      <input id="subtitleInput" type="text" value="Sunset Heist" maxlength="64" autocomplete="off">
+    </div>
+
+    <div class="panel">
+      <h2>Grade</h2>
+      <div class="chip-row">
+        <button type="button" class="chip grade-sunset" data-grade="sunset">Vice Sunset</button>
+        <button type="button" class="chip grade-neon" data-grade="neon">Neon Night</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Size</h2>
+      <div class="chip-row">
+        <button type="button" class="chip" data-size="square">Square 1080×1080</button>
+        <button type="button" class="chip" data-size="portrait">Portrait 1080×1350</button>
+        <button type="button" class="chip" data-size="story">Story 1080×1920</button>
+      </div>
+    </div>
+
+    <div class="panel export-panel">
+      <h2>Export</h2>
+      <button type="button" class="btn primary" id="exportBtn">Export PNG</button>
+      <p class="hint">Downloads the cover at the size above, ready to share.</p>
+    </div>
+
+    <p class="status" id="statusLine" role="status">Loading sample photos…</p>
+  </section>
+
+  <section class="preview" aria-label="Cover preview">
+    <canvas id="coverCanvas" width="1080" height="1080"></canvas>
+    <p class="hint preview-hint">Live preview — exactly what the PNG will look like. Click a panel to select it, drag to move its photo.</p>
+  </section>
+</main>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
